@@ -2,6 +2,7 @@ package com.example.causgaspriceconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -54,18 +55,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
+                    assert response.body() != null;
                     final String data = response.body().string();
 
                     JSONObject json;
                     JSONObject rates;
-                    Double usd;
-                    Double cad;
+                    double usd;
+                    double cad;
                     try {
                         json = new JSONObject(data);
                     } catch (JSONException e) {
                         json = null;
                     }
                     try {
+                        assert json != null;
                         rates = json.getJSONObject("rates");
                         usd = rates.getDouble("USD");
                         cad = rates.getDouble("CAD");
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         calculate.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 usdPerGallon = Double.valueOf(usdPerGallonInput.getText().toString());
