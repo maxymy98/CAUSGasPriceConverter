@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CA US Gas Price Converter</string>
+    <string name="cad_price">CAD Per Litre Price</string>
+    <string name="usd_price">USD Per Gallon Price</string>
+    <string name="input_hint">3.5</string>
+    <string name="calculate">calculate</string>
+</resources>
